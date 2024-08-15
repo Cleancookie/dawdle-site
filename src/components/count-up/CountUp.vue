@@ -1,5 +1,5 @@
 <template>
-    <h1>Count Up Game</h1>
+    <h1 class="text-3xl font-bold underline">Count Up Game</h1>
     <div class="">
         <button></button>
         <button></button>
