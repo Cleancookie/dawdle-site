@@ -1,0 +1,17 @@
+import WhackAMole from './WhackAMole.vue';
+import { fn } from '@storybook/test';
+
+export default {
+  title: 'WhackAMole',
+  component: WhackAMole,
+  argTypes: {},
+  args: {
+    onWhack: fn(() => {
+      console.log('Whacked!');
+    }),
+  },
+};
+
+export const Primary = {
+  args: {},
+};
