@@ -9,7 +9,12 @@
         class="rounded-md bg-indigo-600 px-2.5 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
         @click="start">Start phase: Playing</button>
     <hr>
-    <WhackAMoleBoard :board="board" @whacked="whacked" />
+    <WhackAMoleBoard
+        :board="board"
+        :width="width"
+        :height="height"
+        @whacked="whacked"
+    />
 </template>
 
 <script>
@@ -20,6 +25,18 @@ export default {
     components: {
         WhackAMoleBoard,
     },
+    props: {
+        width: {
+            type: Number,
+            required: true,
+            default: 3,
+        },
+        height: {
+            type: Number,
+            required: true,
+            default: 3,
+        },
+    },
     data() {
         return {
             score: 0,
@@ -27,21 +44,24 @@ export default {
             phases: ['waiting', 'playing'],
             maxMoles: 2,
             board: [
-                { id: 1, mole: false },
-                { id: 2, mole: false },
-                { id: 3, mole: false },
-                { id: 4, mole: false },
-                { id: 5, mole: false },
-                { id: 6, mole: false },
-                { id: 7, mole: false },
-                { id: 8, mole: false },
-                { id: 9, mole: false },
             ],
         };
     },
     methods: {
         start() {
+            this.initBoard();
             this.phase = 'playing';
+            this.score = 0;
+            this.refreshMoles();
+        },
+        initBoard() {
+            // make a board that is width x height
+            this.board = [];
+            for (let x = 0; x < this.width; x++) {
+                for (let y = 0; y < this.height; y++) {
+                    this.board.push({ id: x + y * this.width, mole: false });
+                }
+            }
         },
         whacked(hole) {
             if (!hole.mole) {

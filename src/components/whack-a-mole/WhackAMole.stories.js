@@ -13,5 +13,8 @@ export default {
 };
 
 export const Primary = {
-  args: {},
+  args: {
+    width: 3,
+    height: 3,
+  },
 };

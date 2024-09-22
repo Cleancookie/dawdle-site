@@ -1,5 +1,5 @@
 <template>
-    <div class="board">
+    <div class="board" :style="this.boardStyle">
         <button
             class="hole"
             v-for="hole in board"
@@ -27,6 +27,24 @@ export default {
                 // { id: 9, mole: false },
             ],
         },
+        width: {
+            type: Number,
+            required: true,
+        },
+        height: {
+            type: Number,
+            required: true,
+        },
+    },
+    computed: {
+        boardStyle() {
+            return {
+                height: `${this.height * 100}px`,
+                width: `${this.width * 100}px`,
+                gridTemplateColumns: `repeat(${this.width}, 1fr)`,
+                gridTemplateRows: `repeat(${this.height}, 1fr)`,
+            };
+        },
     },
     emits: ['whacked'],
 };
@@ -34,21 +52,16 @@ export default {
 
 <style scoped>
 .board {
-    height: 300px;
-    width: 300px;
     border-radius: 1px solid green;
     background-color: red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+
+    display: grid;
+
     gap: 5%;
     padding: 2.5%;
 }
 
 .hole {
-    height: 30%;
-    width: 30%;
     background-color: black;
     border-radius: 15px;
 
