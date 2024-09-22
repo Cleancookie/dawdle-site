@@ -49,9 +49,12 @@ export default {
             }
             this.score++;
             hole.mole = false;
-            this.refreshMoles();
+            this.refreshMoles([hole.id]);
         },
-        refreshMoles() {
+        /**
+         * @param excludeMoles {Array<number>} - Array of hole ids to exclude from being a mole
+         */
+        refreshMoles(excludeMoles = []) {
             // count moles
             const moles = this.board.filter((hole) => hole.mole).length;
 
@@ -60,13 +63,21 @@ export default {
             }
 
             if (moles < this.maxMoles) {
-                this.addMole();
+                this.addMole(excludeMoles);
             }
 
             this.refreshMoles();
         },
-        addMole() {
-            const random = Math.floor(Math.random() * this.board.length);
+        /**
+         * @param excludeMoles {Array<number>} - Array of hole ids to exclude from being a mole
+         */
+        addMole(excludeMoles = []) {
+            let random = Math.floor(Math.random() * this.board.length);
+
+            // if this hole is excluded then use the next hole
+            if (excludeMoles.includes(this.board[random].id)) {
+                random = (random + 1) % this.board.length;
+            }
 
             this.board[random].mole = true;
         },
