@@ -2,7 +2,7 @@ import WhackAMole from './WhackAMole.vue';
 import { fn } from '@storybook/test';
 
 export default {
-  title: 'WhackAMole',
+  title: 'WhackAMole/WhackAMole',
   component: WhackAMole,
   argTypes: {},
   args: {

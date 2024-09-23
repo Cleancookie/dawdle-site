@@ -2,7 +2,7 @@ import { fn } from '@storybook/test';
 import WhackAMoleBoard from './WhackAMoleBoard.vue';
 
 export default {
-  title: 'WhackAMoleBoard',
+  title: 'WhackAMole/Board',
   component: WhackAMoleBoard,
   argTypes: {},
   args: {
