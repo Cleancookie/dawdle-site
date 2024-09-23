@@ -1,9 +1,9 @@
-import WhackAMole from './WhackAMole.vue';
 import { fn } from '@storybook/test';
+import WhackAMoleCompositionApi from './WhackAMoleCompositionApi.vue';
 
 export default {
   title: 'WhackAMole/WhackAMoleCompositionApi',
-  component: WhackAMole,
+  component: WhackAMoleCompositionApi,
   argTypes: {},
   args: {
     onWhack: fn(() => {

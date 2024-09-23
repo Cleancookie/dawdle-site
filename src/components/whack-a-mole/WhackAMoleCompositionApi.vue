@@ -1,5 +1,6 @@
 <script setup>
 import WhackAMoleBoard from './WhackAMoleBoard.vue';
+import { ref, defineProps, watch } from 'vue';
 
 let props = defineProps({
     width: {
